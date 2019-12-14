@@ -4,6 +4,7 @@
 
 class TString {
     public:
+        TString( TString&& s );
         TString& operator= (const TString& s );
         TString( const char* s=nullptr );
         TString( const TString& s);

@@ -44,3 +44,11 @@ TString& TString::operator= (const TString& s ) {
 #endif
 return *this; 
 }
+TString::TString( TString&& s ) : ptr(s.ptr), len(s.len) {
+    s.ptr = nullptr;
+    s.len = 0;
+
+    #ifdef DEBUG
+        cout << "TString mvc-tor " << len << " - " << ( ptr ? ptr : "pusty" ) << endl;
+    #endif
+}

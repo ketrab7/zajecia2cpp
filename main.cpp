@@ -8,4 +8,5 @@ using namespace std;
 
 int main () {
    TString s1;
+   TString s2("inizjalizacja slowem");
 }

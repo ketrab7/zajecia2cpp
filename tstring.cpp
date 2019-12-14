@@ -52,3 +52,16 @@ TString::TString( TString&& s ) : ptr(s.ptr), len(s.len) {
         cout << "TString mvc-tor " << len << " - " << ( ptr ? ptr : "pusty" ) << endl;
     #endif
 }
+TString& TString::operator= ( TString&& s ) {
+   if ( this != &s ) {
+        delete [] ptr; 
+        len = s.len; 
+        ptr = s.ptr; 
+        s.len = 0; 
+        s.ptr = nullptr; 
+    }
+    #ifdef DEBUG
+        cout << "TString move operator= " << len << " - " << ( ptr ? ptr : "pusty" ) << endl;
+    #endif
+    return *this;
+} 

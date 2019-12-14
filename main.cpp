@@ -8,12 +8,9 @@ using namespace std;
 
 
 int main () {
-    random_device rd;
-    mt19937_64 gen(rd());
-    uniform_int_distribution<short>dis;
-    for(auto n=0;n<10;n++){
-        cout<<dis(gen)<<' '<<to_string(dis(gen))<<' ';
-        endl(cout);
-        
-    }
+   string s1 = "wlazl kotek na plotek i mruga";
+   for ( auto c: s1) cout <<c<<" ";
+   for ( auto& c : s1 ) c = (c=='w') ? 'W' : c;
+
+   for (int i=0; i <s1.length(); ++i) cout<<s1[i]<<" ";
 }

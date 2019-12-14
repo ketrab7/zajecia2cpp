@@ -21,3 +21,13 @@ TString::TString(const char* s) : ptr (nullptr), len(0) {
 
         delete [] ptr;
     }
+TString::TString( const TString& s ) : ptr(nullptr), len(s.len){
+    if(len>0){
+        ptr = new char [len +1];
+        strcpy( ptr, s.ptr);
+    }
+    #ifdef DEBUG
+    cout<<"TString cc-tor" <<len<<"-"<<(ptr ? ptr : "pusty")<<endl;
+    #endif
+
+}

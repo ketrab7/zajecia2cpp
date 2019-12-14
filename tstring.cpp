@@ -12,4 +12,12 @@ TString::TString(const char* s) : ptr (nullptr), len(0) {
     #ifdef DEBUG
         cout<<"TString c-tor"<<len<<" - " << (ptr ? ptr : "pusty") <<endl;
     #endif
+    
 }
+ TString::~TString(){
+        #ifdef DEBUG
+        cout<<"TString d-tor" <<len<<"-" << (ptr ? ptr : "pusty") <<endl;
+        #endif
+
+        delete [] ptr;
+    }

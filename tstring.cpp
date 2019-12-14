@@ -29,5 +29,18 @@ TString::TString( const TString& s ) : ptr(nullptr), len(s.len){
     #ifdef DEBUG
     cout<<"TString cc-tor" <<len<<"-"<<(ptr ? ptr : "pusty")<<endl;
     #endif
-
+}
+TString& TString::operator= (const TString& s ) {
+    if ( this != &s ) 
+    {
+        delete [] ptr; ptr = nullptr; len = s.len;
+        if ( len > 0 ) {
+            ptr = new char[ len + 1 ];
+            strcpy( ptr, s.ptr );
+       }
+    }
+#ifdef DEBUG
+    cout << "TString copy operator= " << len << " - " << ( ptr ? ptr : "pusty" ) << endl;
+#endif
+return *this; 
 }

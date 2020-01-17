@@ -77,3 +77,43 @@ const char& TString::operator[]( size_t n ) const {
     if ( n >= 0 && n < len ) return ptr[ n ];
     throw out_of_range("In TString::operator[] argument out of scope");
 }
+char* TString::insert(size_t pos, const char* c) {
+    if (pos >=0 && pos <= len) {
+        size_t oldlen = len;
+        len = len+strlen(c);
+        char* tmp = new char[ len+1 ];
+        strcpy( tmp, ptr );
+        for (size_t i=pos; i<pos+strlen(c); ++i) {
+            tmp[i] = c[i-pos];
+        }
+        for (size_t i=pos; i<oldlen; ++i) {
+            tmp[i+strlen(c)] = ptr[i];
+        }
+        delete [] ptr;
+        ptr = tmp;
+        return ptr+pos;
+    } else {
+        throw out_of_range("zly argument");
+    }
+    return ptr;
+}
+char* TString::insert( size_t pos, char c ) {
+    return insert( pos, string( { c } ).c_str() );
+}
+char* TString::erase( size_t bpos, size_t blen) {
+    if (bpos >=0 && blen >= 0 && (bpos + blen) <= len) {
+        len = len - blen;
+        char* tmp = new char[ len ];
+        for (size_t i = 0; i < bpos; ++i) {
+            tmp[i] = ptr[i];
+        }
+        for (size_t i = bpos; i < len; ++i) {
+            tmp[i] = ptr[i+blen];
+        }
+        delete [] ptr;
+        ptr = tmp;
+    } else {
+        throw out_of_range("zly argument");
+    }
+    return ptr;
+}

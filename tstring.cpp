@@ -1,5 +1,6 @@
 #include "tstring.h"
 #include <iostream>
+#include <stdexcept>
 
 using namespace std;
 
@@ -65,3 +66,14 @@ TString& TString::operator= ( TString&& s ) {
     #endif
     return *this;
 } 
+
+char& TString::operator[]( size_t n ) {
+    if ( !ptr ) throw invalid_argument("pusty obiekt"); 
+    if ( n >= 0 && n < len ) return ptr[ n ];
+    throw out_of_range("In TString::operator[] argument out of scope");
+}
+const char& TString::operator[]( size_t n ) const {
+    if ( !ptr ) throw invalid_argument("pusty obiekt"); 
+    if ( n >= 0 && n < len ) return ptr[ n ];
+    throw out_of_range("In TString::operator[] argument out of scope");
+}
